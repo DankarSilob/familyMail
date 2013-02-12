@@ -25,14 +25,6 @@ function addCombo(x) {
 	}
 	//
 }
-<<<<<<< HEAD
-=======
-function available(){
-	//note: change join('') to join('_')
-	var dominio = document.forms["form"]["ap_paterno"].value.split(' ').join('') + document.forms["form"]["ap_materno"].value.split(' ').join('');
-	document.getElementById("disponib").innerHTML=dominio;
-}
->>>>>>> Actualización 8 - Feb - 2013
 function generar(){
 	var a = Math.ceil(Math.random() * 9)+ '';
 	var b = Math.ceil(Math.random() * 9)+ '';       

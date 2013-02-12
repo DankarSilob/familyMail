@@ -1,27 +1,8 @@
-<?php
-$connect = mysql_connect("50.116.84.66","labnet_db","LABNET1") or die ("Could not connect.");
-mysql_select_db("labnet_familyMail") or die ("Could not find database");
-?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FamilyMail.com.mx - Forma de registro</title>
-<<<<<<< HEAD
-=======
-<!--<link rel="stylesheet" type="text/css" href="vista.css" media="all">-->
-
-<script type="text/javascript">
-function reload(form)
-{
-var selected_value=form.est.options[form.est.options.selectedIndex].value;
-//demodropdownbox --> registro
-self.location.href='registro.php?est=' + selected_value;   
-}
-
-</script>
-
->>>>>>> Actualización 8 - Feb - 2013
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/create.js"></script>
@@ -49,31 +30,6 @@ self.location.href='registro.php?est=' + selected_value;
 	<input type="button" value="Ver disponibilidad de dominio" onclick="available()" />
     <!--<input type="button" value="Ver disponibilidad de dominio" />-->
     <span id="disponib">-</span>
-<<<<<<< HEAD
-=======
-    <!--Dominio-->
-	<!--
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$.ajax({
-			type: "GET",
-			url: "http://www.whoisxmlapi.com/whoisserver/WhoisService?cmd=GET_DN_AVAILABILITY&domainName="+$("#ap_paterno").val()+$("#ap_materno").val()+".com",
-			dataType: "xml",
-			success: function(xml){
-				$(xml).find('AVAILABLE').each(function(){
-					var id= $(this).attr('id');
-					var title = $(this).find('title').text();
-					var url = $(this).find('url').text();
-					$('<div class="items" id="link_'+id+'"></div>').html('<a href="'+url+'">'+title+'</a>').appendTo('#disponib');
-
-				});
-			}
-		});
-	});
-	</script>
-	-->
-	<!--Fin verif. dominio-->
->>>>>>> Actualización 8 - Feb - 2013
 	<p>
       <label for="contrasena">Contraseña</label>
       <input type="password" name="contrasena" id="contrasena" size="30" />
@@ -86,56 +42,11 @@ self.location.href='registro.php?est=' + selected_value;
       <label for="direccion">Dirección</label>
       <input type="text" name="direccion" id="direccion" size="30" />
     </p>
-<<<<<<< HEAD
     <p>
     	<label for="estado">Estado</label>
     	<select id="estado" name="estado" onChange="onChangeEstado()"></select>
     	<select id="ciudad" name="ciudad"></select>
     </p>
-=======
-<!--INICIAN DROPDOWN LISTS DINAMICOS-->
-<?php
-@$est=$HTTP_GET_VARS['est'];
-if(strlen($est) > 0 and !is_numeric($est)){ 
-echo "INVALID DATA.";
-exit;
-}
-//This fetches content from car estados table first to get the AUDI,BMW,PORSCHE, SAAB list
- 
-$estados_query=mysql_query("SELECT * FROM States"); 
- 
-if(isset($est) and strlen($est) > 0)
-{
- 
-// If the numeric value of "est" (selected cities of states) is greater than zero we are OK
-// Then we will perform an SQL query to find all car cities with that number.
-$cities_query=mysql_query("SELECT * FROM Cities WHERE state_id = '$est'"); 
-}
-// 
- // estado cambiado por est
-echo "<select name='est' onchange='reload(this.form)'><option value=''>-Estado-</option>";
- 
-while($qresult_estados = mysql_fetch_array($estados_query)) 
-{ 
-if($qresult_estados['id_state']==@$est){
-	echo "<option selected value='".$qresult_estados['id_state']."'>".$qresult_estados['state_name']."</option>"."<br />";}
-else{
-	echo "<option value='".$qresult_estados['id_state']."'>".$qresult_estados['state_name']."</option>";}
-}
-echo "</select>";
-echo "<select name='municipio'><option value=''>-Ciudad-</option>";
- 
-while($qresult_cities = mysql_fetch_array($cities_query)) 
-{ 
-
-echo  "<option value='".$qresult_cities['id_city']."'>".$qresult_cities['name_city']."</option>";
-}
-echo "</select>";
-//
-mysql_close($connect);
-?>	
-<!--TERMINAN DROPDOWN LISTS DINAMICOS-->
->>>>>>> Actualización 8 - Feb - 2013
 	<p>
       <label for="telefono">Teléfono de contacto (Clave Lada + Número)</label>
       <input type="text" name="telefono" id="telefono" size="30" />
@@ -152,11 +63,7 @@ mysql_close($connect);
 	  
 	  <script type="text/javascript">generar();</script>
     </p>
-<<<<<<< HEAD
 	<input type="hidden" id="idUser">
-=======
-	
->>>>>>> Actualización 8 - Feb - 2013
     <input type="button" id="envio" value="Enviar"   />
 	</form>
     <span id="result" style="display:none">SUCCESS</span>
@@ -224,17 +131,12 @@ mysql_close($connect);
 			telefono : $("#telefono").val(),
 			correo : $("#correo").val()
 			} , function (data) {
-<<<<<<< HEAD
 				 $("#idUser").val(data);
-=======
-				 console.log(data);
->>>>>>> Actualización 8 - Feb - 2013
 				//aqui iria el load al paso  2...
 				 $('#result').show();
 				 $('#result').load("registro2.php");
 				 $('#form').hide();
 			})
-<<<<<<< HEAD
 	}
 
 		function onChangeEstado()
@@ -247,9 +149,6 @@ mysql_close($connect);
 	}
 
 
-=======
-}
->>>>>>> Actualización 8 - Feb - 2013
 </script>
 <div id="footer">
 	&copy; 2013, FamilyMail.com.mx

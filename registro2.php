@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-=======
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>FamilyMail.com.mx - Forma de registro</title>
-<script type="text/javascript">
-</script>
-</head>
-
-<body>
-
->>>>>>> Actualización 8 - Feb - 2013
 <h2>Creación del correo familiar</h2>
 <!--Usuarios Normales-->
 <form name="mail_form" id="mail_form" action="confirmar.php" onsubmit="return validar_nombres()" >
@@ -103,7 +89,6 @@ function agregar_miembro()
     });
 	function sendForm()
 	{
-<<<<<<< HEAD
 		var arrayNombres = new Array();
 			arrayNombres.push($("#nombre1").val());
 			arrayNombres.push($("#nombre2").val());
@@ -111,14 +96,6 @@ function agregar_miembro()
 			arrayNombres.push($("#nombre4").val());
 			arrayNombres.push($("#nombre5").val());
 		$.post('functions/registraUsuario2.php', {nombres  : arrayNombres, idUser : $("#idUser").val()
-=======
-		$.post('functions/registraUsuario2.php', {
-			nombre1 : $("#nombre1").val()+"@dominiodeprueba.COM",
-			nombre2 : $("#nombre2").val()+"@dominiodeprueba.COM",
-			nombre3 : $("#nombre3").val()+"@dominiodeprueba.COM",
-			nombre4 : $("#nombre4").val()+"@dominiodeprueba.COM",
-			nombre5 : $("#nombre5").val()+"@dominiodeprueba.COM"
->>>>>>> Actualización 8 - Feb - 2013
 			} , function (data) {
 				 console.log(data);
 				//aqui iria el load al paso de pago de servicio...
@@ -129,9 +106,4 @@ function agregar_miembro()
 			})
 }
 </script>
-<<<<<<< HEAD
-=======
-
-<?php
->>>>>>> Actualización 8 - Feb - 2013
 
