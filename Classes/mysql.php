@@ -13,7 +13,7 @@ class mysql {
 
 
     function connect(){
-            $this->conexion = @mysqli_connect('50.116.84.66',"labnet_db","LABNET123") or die(mysqli_connect_errno());
+            $this->conexion = @mysql_connect('50.116.84.66',"labnet_db","LABNET1") or die(mysql_error());
             $this->flag = true;
             @mysql_query("SET NAMES utf8");
             return $this->conexion;
@@ -26,9 +26,13 @@ class mysql {
     }
     
     function query($query){
-        return @mysqli_query($this->data_base,$query) or die(mysql_error());
+        return @mysql_query($query) or die(mysql_error());
     }
     
+	function f_arr($query){
+        return @mysql_fetch_array($query);
+    }
+	
     function f_obj($query){
         return @mysql_fetch_object($query);
     }
@@ -42,7 +46,7 @@ class mysql {
     }
     
     function select(){
-        $result = @mysqli_select_db($this->conexion,DB_DATABASE);
+        $result = @mysql_select_db('labnet_familyMail',$this->conexion);
         if($result){
             $this->data_base = DB_DATABASE; 
             return true;
