@@ -44,7 +44,7 @@ class sendmail {
 		$this->headers .= "Bcc: ".$bcc." \r\n";
 	}
 	
-	function send($msg){
+	function send(){
 		if (mail($this->to, $this->subject, $this->msg, $this->headers))
 		{
 			echo $success;

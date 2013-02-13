@@ -1,30 +1,9 @@
-function addCombo(x) {
-	//var textb = document.getElementById("txtCombo");
-	
-	var estado00 = [""];
-	var estado02 = ["Ensenada", "Mexicali", "Rosarito", "Tecate", "Tijuana"];
-	var estado03 = ["Comondú", "Mulegé", "La Paz", "Los Cabos", "Loreto"];
-	var estado;
-	switch(x){
-	case 'Baja California': estado = estado02; break;
-	case 'Baja California Sur': estado = estado03; break;
-	default: estado = estado00;
-	}
-	for (var y=0; y<estado.length; y++){
-	var combo = document.getElementById("municipio");
-	var option = document.createElement("option");
-	
-	
-		option.text = estado[y];
-		option.value = estado[y];
-		try {
-			combo.add(option, null); //Standard 
-		}catch(error) {
-			combo.add(option); // IE only
-		}
-	}
-	//
+function available(){
+	//note: change join('') to join('_')
+	var dominio = document.forms["form"]["ap_paterno"].value.split(' ').join('') + document.forms["form"]["ap_materno"].value.split(' ').join('');
+	document.getElementById("disponib").innerHTML=dominio;
 }
+
 function generar(){
 	var a = Math.ceil(Math.random() * 9)+ '';
 	var b = Math.ceil(Math.random() * 9)+ '';       

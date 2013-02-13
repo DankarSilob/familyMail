@@ -29,7 +29,7 @@
     </p>
 	<input type="button" value="Ver disponibilidad de dominio" onclick="available()" />
     <!--<input type="button" value="Ver disponibilidad de dominio" />-->
-    <span id="disponib">-</span>
+    <span id="disponib">dominio</span>
 	<p>
       <label for="contrasena">Contraseña</label>
       <input type="password" name="contrasena" id="contrasena" size="30" />
@@ -45,7 +45,8 @@
     <p>
     	<label for="estado">Estado</label>
     	<select id="estado" name="estado" onChange="onChangeEstado()"></select>
-    	<select id="ciudad" name="ciudad"></select>
+    	<label for="ciudad">Ciudad</label>
+        <select id="ciudad" name="ciudad"></select>
     </p>
 	<p>
       <label for="telefono">Teléfono de contacto (Clave Lada + Número)</label>
@@ -55,12 +56,12 @@
       <label for="correo">Correo-e</label>
       <input type="text" name="correo" id="correo" size="30" />
     </p>
-	
+
 	<p>
       <label for="code">Escriba el siguiente código: <span id="txtCaptchaDiv" style="color:#F00">####</span><!-- codigo generado automaticamente --> 
       <input type="hidden" id="txtCaptcha" /></label><!-- codigo en casilla oculta -->
       <input type="text" name="txtInput" id="txtInput" size="30" autocomplete="off" /><!--coloca el codigo que ve en rojo aqui-->
-	  
+
 	  <script type="text/javascript">generar();</script>
     </p>
 	<input type="hidden" id="idUser">
@@ -85,7 +86,7 @@
 		   'nombre': {required:true , minlength : 3, latincharonly: true },
 		   'direccion': { required:true, latindircharonly: true },
 		   'estado': { required:true },
-		   'municipio': { required:true },
+		   'ciudad': { required:true },
            'telefono': { required: true, number: true , maxlength: 14},
            'correo': { required: true, email: true },
            'contrasena': {required : true, minlength: 6, maxlength: 15},
@@ -98,7 +99,7 @@
 		   'nombre': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
 		   'direccion': {required:'Campo obligatorio', latindircharonly: 'Hay un caracter inválido' },
 		   'estado': {required:'Campo obligatorio'},
-		   'municipio': {required:'Campo obligatorio'},
+		   'ciudad': {required:'Campo obligatorio'},
            'telefono': { required: 'Campo obligatorio', number: 'Ingrese solamente dígitos', maxlength: 'Máximo 14 dígitos' },
            'correo': { required: 'Campo obligatorio', email: 'El correo no es válido' },
            'contrasena': {required : 'Campo obligatorio', minlength: 'Campo mínimo 6 caracteres', maxlength: 'Máximo 15 caracteres'},
@@ -127,7 +128,7 @@
 			nombre : $("#nombre").val(),
 			direccion : $("#direccion").val(),
 			estado : $("#estado").val(),
-			municipio : $("#municipio").val(),
+			ciudad : $("#ciudad").val(),
 			telefono : $("#telefono").val(),
 			correo : $("#correo").val()
 			} , function (data) {
@@ -143,7 +144,7 @@
 	{
 		$.post('functions/dropdown.php',{op : 2 , estado : $("#estado").val() },function (data){
 			$("#ciudad").html('');
-			
+
 			$("#ciudad").append(data);
 		});
 	}

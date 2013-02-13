@@ -41,5 +41,4 @@
 
 
 	if(isset($db))$db->close();
-
 ?>

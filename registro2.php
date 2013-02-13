@@ -1,6 +1,7 @@
 <h2>Creación del correo familiar</h2>
+<p>Ingrese los nombres de correo electrónico que desea utilizar*.</p>
 <!--Usuarios Normales-->
-<form name="mail_form" id="mail_form" action="confirmar.php" onsubmit="return validar_nombres()" >
+<form name="mail_form" id="mail_form" action="#" >
 <table>
 <tr>
 	<th>Miembro</th>
@@ -27,7 +28,7 @@
     <td><input type="text" name="nombre5" id="nombre5" /></td>
 </tr>
 </table>
-<input type="button" value="Agregar a otro miembro" onclick="agregar_miembro()" /><br />
+<!--<input type="button" value="Agregar a otro miembro" onclick="agregar_miembro()" /><br />-->
 <input type="button" value="Regresar" onclick="esconder()" /><br />
 <input type="button" id="envio2" value="Enviar Nombres" />
 
@@ -63,20 +64,25 @@ function agregar_miembro()
 	}
 
  $(document).ready(function () {
-      $("#mail_form").validate({
+        //agregar nueva regla: primera letra debe ser del alfabeto, las siguientes deben ser letras y/o digitos.
+		// /[a-z]^[a-z\d]+$/
+	jQuery.validator.addMethod("mailname", function(value, element) { 
+  return this.optional(element) || /^[a-z\d]+$/.test(value); 
+}, "Please only letters.");
+	  $("#mail_form").validate({
       	 rules: {
-           'nombre1': {required:true , minlength : 3 },
-           'nombre2': {required:true , minlength : 3 },
-           'nombre3': {required:true , minlength : 3 },
-		   'nombre4': {required:true , minlength : 3 },
-           'nombre5': {required:true , minlength : 3 }
+           'nombre1': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
+           'nombre2': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
+           'nombre3': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
+		   'nombre4': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
+           'nombre5': {required:true , minlength : 3 , maxlength: 60 , mailname: true }
 		   },
           messages : {
-           'nombre1': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres' },
-		   'nombre2': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres' },
-		   'nombre3': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres' },
-		   'nombre4': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres' },
-		   'nombre5': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres' } 			   
+           'nombre1': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
+		   'nombre2': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
+		   'nombre3': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
+		   'nombre4': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
+		   'nombre5': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' } 			   
           }
 
       });
@@ -87,6 +93,7 @@ function agregar_miembro()
 			}
 		});
     });
+	//
 	function sendForm()
 	{
 		var arrayNombres = new Array();
@@ -106,4 +113,3 @@ function agregar_miembro()
 			})
 }
 </script>
-
