@@ -8,7 +8,7 @@ class sendmail {
 	var $failure = "Hubo un error al intentar mandar su mensaje. Intente más tarde.";
 	
 	function set_to($t){
-		$this->to = $t."@familymail.com.mx";
+		$this->to = $t;
 	}
 	
 	function set_subject($s){
@@ -16,7 +16,8 @@ class sendmail {
 		}
 	
 	function set_msg($m){
-		$this->msg = wordwrap($m, 70, "\r\n");
+		//$this->msg = wordwrap($m, 70, "\r\n");
+		$this->msg = $m;
 		}
 	
 	function set_content_type(){
@@ -45,7 +46,7 @@ class sendmail {
 	}
 	
 	function send(){
-		if (mail($this->to, $this->subject, $this->msg, $this->headers))
+		if (mail($this->to, $this->subject, $this->msg))
 		{
 			echo $success;
 		}
@@ -53,6 +54,16 @@ class sendmail {
 		{
 			echo $failure;
 		}	
+	}
+	function send_w_headers(){
+		if (mail($this->to, $this->subject, $this->msg, $this->headers))
+		{
+			echo $success;
+		}
+		else
+		{
+			echo $failure;
+		}
 	}
 }
 ?>

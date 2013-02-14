@@ -30,7 +30,7 @@
 </table>
 <!--<input type="button" value="Agregar a otro miembro" onclick="agregar_miembro()" /><br />-->
 <input type="button" value="Regresar" onclick="esconder()" /><br />
-<input type="button" id="envio2" value="Enviar Nombres" />
+<input type="button" id="envio2" value="Registrarme" />
 
 </form>
 <!--Usuario Adicional-->
@@ -102,7 +102,24 @@ function agregar_miembro()
 			arrayNombres.push($("#nombre3").val());
 			arrayNombres.push($("#nombre4").val());
 			arrayNombres.push($("#nombre5").val());
-		$.post('functions/registraUsuario2.php', {nombres  : arrayNombres, idUser : $("#idUser").val()
+		$.post('functions/registraUsuario2.php', {
+			nombres  : arrayNombres,
+			idUser : $("#idUser").val(),
+			
+			//
+			apellidoPaterno : $("#ap_paterno").val(),
+			apellidoMaterno : $("#ap_materno").val(),
+			contrasena : $("#contrasena").val(),
+			nombre : $("#nombre").val(),
+			direccion : $("#direccion").val(),
+			estado : $("#estado").val(),
+			ciudad : $("#ciudad").val(),
+			telefono : $("#telefono").val(),
+			correo : $("#correo").val()
+			//
+			
+			
+			
 			} , function (data) {
 				 console.log(data);
 				//aqui iria el load al paso de pago de servicio...

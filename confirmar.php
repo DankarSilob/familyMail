@@ -9,12 +9,10 @@
 
 <body>
 
-<h2>Forma de pago</h2>
-<form name="pago" id="pago" action="recibido.php" onsubmit="return validar_nombres()" >
-<p>Realice el pago por Internet en dineromail.com. Haga clic en "Enviar Pago" para realizar el pago de su correo personalizado.</p>
-<input type="button" value="Regresar" onclick="esconder()" /><br />
-<input type="submit" value="Enviar pago" />
-
+<h2>Registrado!</h2>
+<form name="pago" id="pago" action="#" >
+<p>Muchas gracias por registrarse con nosotros. Para completar el registro, realice el pago por Internet en dineromail.com.</p>
+<!--<input type="button" value="Regresar" onclick="esconder()" /><br />-->
 </form>
 <script type="text/javascript">
 function esconder()
@@ -23,6 +21,8 @@ function esconder()
 			$('#pago').hide();
 			$('#mail_form').show();
 			});
+			
+		
 	}
 </script>
 <?php
