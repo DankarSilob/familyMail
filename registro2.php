@@ -105,8 +105,6 @@ function agregar_miembro()
 		$.post('functions/registraUsuario2.php', {
 			nombres  : arrayNombres,
 			idUser : $("#idUser").val(),
-			
-			//
 			apellidoPaterno : $("#ap_paterno").val(),
 			apellidoMaterno : $("#ap_materno").val(),
 			contrasena : $("#contrasena").val(),
@@ -116,7 +114,6 @@ function agregar_miembro()
 			ciudad : $("#ciudad").val(),
 			telefono : $("#telefono").val(),
 			correo : $("#correo").val()
-			//
 			
 			
 			
