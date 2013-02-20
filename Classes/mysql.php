@@ -1,5 +1,5 @@
 <?php
-require("../configuracion/connectionSettings.php");
+//require("../configuracion/connectionSettings.php");
 class mysql {
     
     var $server = DB_HOST;
@@ -28,22 +28,22 @@ class mysql {
     function query($query){
         return @mysql_query($query) or die(mysql_error());
     }
+
+    function execute($query)
+    {
+        return mysql_query($query);
+    }
+
+    function numOfRows($result)
+    {
+        return mysql_num_rows($result);
+    }
     
 	function f_arr($query){
-        return @mysql_fetch_array($query);
+        return @mysql_fetch_array($query) ;
     }
 	
-    function f_obj($query){
-        return @mysql_fetch_object($query);
-    }
 
-    function f_array($query){
-        return @mysql_fetch_assoc($query);
-    }
-
-    function f_num($query){
-        return @mysql_num_rows($query);
-    }
     
     function select(){
         $result = @mysql_select_db('labnet_familyMail',$this->conexion);

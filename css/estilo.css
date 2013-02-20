@@ -1,0 +1,50 @@
+body{background:#BFDEFF;
+margin:0;
+padding:0;
+font-family:sans-serif;}
+
+#principal{background:#fff;
+width:960px;
+margin:auto;
+border-radius:0 0 20px 20px;}
+
+#banner{background:#99B2CC;
+padding:0.25em;
+position:relative;}
+#inscribir{font-size:50%;
+position:absolute;
+/*background:#ccc;*/
+top:0;
+right:0;
+width:225px;
+text-align:center;
+margin-top:59px;}
+#inscribir a{display:block;
+background:#ccc;
+margin-left: 100px;
+}
+#inscribir form{display:none;
+width:200px;
+padding: 10px;
+background:#ccc;
+right:0;
+}
+#inscribir a:hover a{display:block;}
+
+#contenido{margin:0 0 20px 0;
+border-radius:0 0 20px 20px;}
+
+#pie{background:#E6F2FF;
+text-align:center;
+padding:0.25em;
+position:fixed;
+bottom:0;
+width:100%;
+font-size:50%;}
+
+#login{float:right;
+width:45%;
+background:#EDEDED;
+margin:2.5%;}
+
+.clear{clear:both;}

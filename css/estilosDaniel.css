@@ -1,0 +1,62 @@
+/* CSS Document */
+
+body
+{
+	background : #FFF;
+	color: #2E3192;
+	font-size: 10px;
+}
+#header 
+{
+ 	background:#EFEFDF;
+	width:100%;
+	height:120px;;
+	position:relative;
+}
+#header img.logo
+{
+	height: 72px;
+	left: 5px;
+
+	top: 17px;
+	width: 249px;
+}
+#header h1
+{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	left: 617px;
+	top: 81px;
+	margin-right: 15%
+	color: #2E3192;
+}
+#formRegistro
+{
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	font-size:14px;
+	width:515px;
+}
+#formRegistro legend
+{
+	font-weight:bold;
+}
+#formRegistro input
+{
+	width:420px;
+	height:25px;
+	border-image:none;
+	border-radius: 3px 3px 3px 3px;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	padding: 5px;
+}
+
+.enviar {
+	background-color:#F26522;
+	width:150px !important;
+	height:45px;
+	border-radius: 3px 3px 3px 3px;
+	
+}
+
+ 
