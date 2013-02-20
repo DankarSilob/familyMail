@@ -20,13 +20,19 @@
 		$usu.= renglon($row['first_name'], $row['last_name_p'], $row['last_name_m'],$row['address'],$row['phone'],$row['alt_email']);
 		}
 	//
-	//echo $usu.'<a href="#" onclick="cerrar()">Cerrar</a>';
-	echo $usu;
+	//echo $usu.'<a id="terminar" href="#" onclick="cerrar()">Cerrar</a>';
+	echo '<h2>Detalles del Usuario</h2>'.$usu.'<a id="terminar" href="#">Volver</a>';
 echo '<script type="text/javascript">
-	function cerrar()
-	{
-		$("#container_detail").hide();
-	}
+	$(document).ready(function() 
+    { 
+		$(\'#terminar\').click(function () {
+			$.post(\'listUsers.php\',{status : \'TODOS\'},function (data){
+			$(\'#principal\').empty();
+			$(\'#principal\').append(data);
+		});
+		
+		});
+    });
 </script>';
 	if(isset($db))$db->close();
 ?>

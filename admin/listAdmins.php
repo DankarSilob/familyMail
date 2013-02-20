@@ -15,32 +15,21 @@ if (!$_SESSION["valid_user"])
 <script type="text/javascript" src="../js/jquery.tablesorter.pager.js"></script>
 <script type="text/javascript" src="../js/jquery.tablesorter.js"></script>
 <link rel="stylesheet" href="./css/style.css" type="text/css" />
-<h2>Usuarios de FamilyMail</h2>
-Filtrar por:
-<select id="status_type" onChange="nuevaTabla()" >
-		<option value="TODOS" selected="selected">Todos</option>
-		<option value="PENDIENTE">Pendiente</option>
-		<option value="EXPIRADO">Expirado</option>
-		<option value="POR VENCER">Por vencer</option>
-		<option value="PAGADO">Pagado</option>
-</select>
+<h2>Administradores</h2>
+
 <div id="container">
 </div>
+
 <script type="text/javascript">
 	function nuevaTabla()
 	{
-		 $('#container').load("usersTable.php");
+		 $('#container').load("adminsTable.php");
 	}
-	function desplegar_info(v){
-		
-		$.post('functions/user_detail.php',{id : v},function(data){
-			$('#principal').html('');
-			$('#principal').append(data);}
-			);
-	}
+	
 	$(document).ready(function() 
     { 
-		$.post('functions/usersTable.php',{status : "TODOS"},function (data){
+		$.post('functions/adminsTable.php',{},function (data){
+			$("#container").html="";
 			$("#container").append(data);
 		});
 	
@@ -49,3 +38,4 @@ Filtrar por:
 		.tablesorterPager({container: $("#pager")});
     });
 </script>
+

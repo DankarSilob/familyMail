@@ -2,7 +2,7 @@
 	require("../../Classes/mysql.php");
 	//!
 	function renglon_tabla($num, $nombre, $ap_paterno, $ap_materno, $prox_pago, $status){
-		return '<tr><td>'.$num.'</td><td>'.$nombre.' '.$ap_paterno.' '.$ap_materno.'</td><td>'.$prox_pago.'</td><td>'.$status.'</td><td><a href="#" onclick="desplegar_info( $(this).closest(\'tr\').find(\'td:eq(0)\').text() ) ">Detalles</a></td></tr>';
+		return '<tr><td>'.$num.'</td><td>'.$nombre.' '.$ap_paterno.' '.$ap_materno.'</td><td>'.$prox_pago.'</td><td>'.$status.'</td><td><a href="#" id="detail" onclick="desplegar_info( $(this).closest(\'tr\').find(\'td:eq(0)\').text() ) ">Detalles</a></td></tr>';
 		//$(this).find("td").eq().html()
 		//$(this).closest(\'tr\').find(\'td:eq(1)\').text();
 		}
