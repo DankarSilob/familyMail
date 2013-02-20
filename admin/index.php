@@ -1,51 +1,46 @@
-<?php
-        session_start();
-        // Archivo de la base de datos y configuración
-        include "../Classes/mysql.php";
-		
-        if ($_GET["op"] == "login")
-  {
-  if (!$_POST["username"] || !$_POST["password"])
-        {
-       die("Necesita proporcionar nombre de usuario y contraseña");
-        }
-  
-  // Crea consulta
-  $q = "SELECT `id`,`username`,`password` FROM `dbUsers` "
-        ."WHERE `username`='".$_POST["username"]."' "
-        ."AND `password`=PASSWORD('".$_POST["password"]."') "
-        ."LIMIT 1";
-  $db = new mysql();
-		$db->connect();
-		$db->select();
-  // Ejecuta consulta
-  $r = mysql_query($q) or die (mysql_error());
-  if ( $obj = mysql_fetch_assoc($r))
-        {
-        // Buen inicio de sesión, crea variables
-        $_SESSION["valid_id"] = $obj->id;
-        $_SESSION["valid_user"] = $_POST["username"];
-        $_SESSION["valid_time"] = time();
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Panel de administracion LABNET</title>
+<meta charset="UTF-8" />
+<meta name="Author" content="$hekh@r d-Ziner, CSSJUNTION.com">
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/structure.css">
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+</head>
 
-        // Redirige a página de miembro
-        //Header("Location: members.php");
-		Header("Location: listUsers.php");
-        }
-  else
-        {
-        //Ingreso no exitoso
-		if(isset($db))$db->close();
-        die("Lo sentimos, no pudimos ingresarlo. Información incorrecta.");
-        }
-	    if(isset($db))$db->close();
-  }
-        else
+<body>
+<form class="box login">
+  <fieldset class="boxBody">
+    <label>Username</label>
+    <input type="text" id="user"  tabindex="1" required>
+    <label><a href="#" class="rLink" tabindex="5">Forget your password?</a>Password</label>
+    <input type="password" id="password" tabindex="2" required>
+     <div id="mensajeError" style="display:none">Acceso denegado</div>
+  </fieldset>
+  <footer>
+    <label><input type="checkbox" tabindex="3">Recordarme</label>
+    <input type="button" class="btnLogin" value="Login" tabindex="4" onclick="login()">
+  </footer>
+</form>
+<footer id="main">
+</footer>
+</body>
+<script type="text/javascript">
+  function login()
   {
-//If all went right the Web form appears and users can log in
-  echo "<form action=\"?op=login\" method=\"POST\">";
-  echo "Usuario: <input name=\"username\" size=\"15\"><br />";
-  echo "Contraseña: <input type=\"password\" name=\"password\" size=\"8\"><br />";
-  echo "<input type=\"submit\" value=\"Login\">";
-  echo "</form>";
+    var user = $("#user").val();
+    var password = $("#password").val();
+    //functions/admin/login.php
+	$.post("../functions/admin/login.php",{username: user, password : password}, function(response){
+      if(response==1){
+      	document.location.href = 'main.php' ;
+    	}
+		else
+		{
+			$("#mensajeError").show();
+		}
+    })
   }
-?>
+</script>
+</html>
