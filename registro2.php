@@ -29,7 +29,7 @@
 </tr>
 </table>
 <!--<input type="button" value="Agregar a otro miembro" onclick="agregar_miembro()" /><br />-->
-<input type="button" value="Regresar" onclick="esconder()" /><br />
+<!--<input type="button" value="Regresar" onclick="esconder()" />--><br />
 <input type="button" id="envio2" value="Registrarme" />
 
 </form>
@@ -69,20 +69,24 @@ function agregar_miembro()
 	jQuery.validator.addMethod("mailname", function(value, element) { 
   return this.optional(element) || /^[a-z\d]+$/.test(value); 
 }, "Please only letters.");
+	jQuery.validator.addMethod("uniqueness", function(value, element) { 
+  return this.optional(element) || uniqueness(value); 
+}, "Please only letters.");
+
 	  $("#mail_form").validate({
       	 rules: {
-           'nombre1': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
-           'nombre2': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
-           'nombre3': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
-		   'nombre4': {required:true , minlength : 3 , maxlength: 60 , mailname: true },
-           'nombre5': {required:true , minlength : 3 , maxlength: 60 , mailname: true }
+           'nombre1': {required:true , minlength : 2 , maxlength: 60 , mailname: true, uniqueness: true  },
+           'nombre2': {required:true , minlength : 2 , maxlength: 60 , mailname: true, uniqueness: true  },
+           'nombre3': {required:true , minlength : 2 , maxlength: 60 , mailname: true, uniqueness: true  },
+		   'nombre4': {required:true , minlength : 2 , maxlength: 60 , mailname: true, uniqueness: true  },
+           'nombre5': {required:true , minlength : 2 , maxlength: 60 , mailname: true, uniqueness: true  }
 		   },
           messages : {
-           'nombre1': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
-		   'nombre2': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
-		   'nombre3': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
-		   'nombre4': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' },
-		   'nombre5': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido' } 			   
+           'nombre1': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido', uniqueness: 'Hay un nombre repetido' },
+		   'nombre2': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido', uniqueness: 'Hay un nombre repetido' },
+		   'nombre3': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido', uniqueness: 'Hay un nombre repetido' },
+		   'nombre4': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido', uniqueness: 'Hay un nombre repetido' },
+		   'nombre5': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', maxlength: 'Máximo de 60 caracteres', mailname: 'Nombre de correo no permitido', uniqueness: 'Hay un nombre repetido' } 			   
           }
 
       });
@@ -126,4 +130,13 @@ function agregar_miembro()
 				 $('#xtramail_form').hide();
 			})
 }
+	function uniqueness(value){
+		var arr = [$("#nombre1").val(), $("#nombre2").val(), $("#nombre3").val(), $("#nombre4").val(), $("#nombre5").val()];
+		var a, x, y, c=0;
+		for(x=0; x<5; x++)
+			if (arr[x] == value)
+				c++;
+		a = (c<2)? true:false;
+		return a;
+		}
 </script>

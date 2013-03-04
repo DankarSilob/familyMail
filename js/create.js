@@ -1,7 +1,10 @@
 function available(){
 	//note: change join('') to join('_')
-	var dominio = document.forms["form"]["ap_paterno"].value.split(' ').join('') + document.forms["form"]["ap_materno"].value.split(' ').join('');
-	document.getElementById("disponib").innerHTML=dominio;
+	if(document.forms["signup"]["ap_paterno"].value != "Apellido Paterno" && document.forms["signup"]["ap_materno"].value != "Apellido Materno")
+	var dominio = document.forms["signup"]["ap_paterno"].value.split(' ').join('') + document.forms["signup"]["ap_materno"].value.split(' ').join('');
+	//document.getElementById("disponib").innerHTML=dominio;
+	document.forms["signup"]["dominio"].value=dominio;
+	
 }
 
 function generar(){

@@ -3,88 +3,131 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>FamilyMail.com.mx - Forma de registro</title>
-<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="js/jquery.tools.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="js/create.js"></script>
+<link rel="stylesheet" type="text/css" href="css/estilo.css" />
+
 </head>
 <body id="main_body" >
 
 <div id="form_container">
-<h1><a>Family Mail</a></h1>
-<form id="form" action="#" method="post" onsubmit="return checkform(this);">
-    
-	<h2>Forma de Registro</h2>
-	<p>Ingrese los siguientes datos, todos los espacios son requeridos.</p>
-	<p>
-      <label for="nombre">Nombre(s)</label>
-      <input type="text" name="nombre" id="nombre" size="30" />
-    </p>
-	<p>
-      <label for="ap_paterno">Apellido Paterno</label>
-      <input type="text" name="ap_paterno" id="ap_paterno" size="30" />
-    </p>
-	<p>
-      <label for="ap_materno">Apellido Materno</label>
-      <input type="text" name="ap_materno" id="ap_materno" size="30" />
-    </p>
-	<input type="button" value="Ver disponibilidad de dominio" onclick="available()" />
-    <!--<input type="button" value="Ver disponibilidad de dominio" />-->
-    <span id="disponib">dominio</span>
-	<p>
-      <label for="contrasena">Contraseña</label>
-      <input type="password" name="contrasena" id="contrasena" size="30" />
-    </p>
-	<p>
-      <label for="contrasena2">Repetir contraseña</label>
-      <input type="password" name="contrasena2" id="contrasena2" size="30" />
-    </p>
-	<p>
-      <label for="direccion">Dirección</label>
-      <input type="text" name="direccion" id="direccion" size="30" />
-    </p>
-    <p>
-    	<label for="estado">Estado</label>
-    	<select id="estado" name="estado" onChange="onChangeEstado()"></select>
-    	<label for="ciudad">Ciudad</label>
-        <select id="ciudad" name="ciudad"></select>
-    </p>
-	<p>
-      <label for="telefono">Teléfono de contacto (Clave Lada + Número)</label>
-      <input type="text" name="telefono" id="telefono" size="30" />
-    </p>
-	<p>
-      <label for="correo">Correo-e</label>
-      <input type="text" name="correo" id="correo" size="30" />
-    </p>
+<form id="signup" method="post">
+				<h2>Inscribirse</h2>
+					<label class="input span">
+  						<span>Nombre(s)</span>
+   						<input type="text" name="nombre" id="nombre" /></label><br/>	
+   					<label class="input span">
+  						<span>Apellido Paterno</span>
+   						<input type="text" name="ap_paterno" id="ap_paterno" onchange="available()"/></label><br/>	
+   					<label class="input span">
+  						<span>Apellido Materno</span>
+   						<input type="text" name="ap_materno" id="ap_materno" onchange="available()" /></label><br/>	
+   					<label class="input span">
+   						<span>Dominio</span>
+   						<input type="text" name="dominio" id="dominio" readonly/></label><br/>
+   					<label>
+   						<input id="submit3" type="button" value="Ver disponiblidad de dominio" /></label>
+   					<label class="input span">
+   					    <span>Contraseña</span>
+   						<input type="password" name="contrasena" id="contrasena"/></label><br/>
+   					<label class="input span">
+   					    <span>Repetir Contraseña</span>
+   						<input type="password" name="contrasena2" id="contrasena2" /></label><br/>
+   					<label class="input span">
+   					    <span>Dirección</span>
+   						<input type="text" name="direccion" id="direccion" /></label><br/>
+   					<label class="input span">
+   					    <span>Teléfono (Clave Lada + Número)</span>
+   						<input type="text" name="telefono" id="telefono" /></label><br/>
+   					<label class="input span">
+   					    <span>Correo</span>
+   						<input type="text" name="correo" id="correo" /></label><br/>
+   					<label class="input span">
+                    	<span><!--Captcha--></span>
+                        <input type="hidden" name="txtCaptcha" id="txtCaptcha" /></label><br />
+                     <label class="input span">
+                        <span>Escriba el código</span>
+                        
+   						<input type="text" name="txtInput" id="txtInput" autocomplete="off"/></label><br/>
+   						<label><br />
+                        <input type="hidden" name="idUser" id="idUser" />
+					    <input type="hidden" name="email_info" id="email_info" value="X" autocomplete="off" />
+                        <span id="txtCaptchaDiv">&nbsp;</span><br />
+                        <script type="text/javascript">generar();</script><br style="clear:both;"/>
+   						<input id="submit" type="button" value="Siguiente" /></label>
 
-	<p>
-      <label for="code">Escriba el siguiente código: <span id="txtCaptchaDiv" style="color:#F00">####</span><!-- codigo generado automaticamente --> 
-      <input type="hidden" id="txtCaptcha" /></label><!-- codigo en casilla oculta -->
-      <input type="text" name="txtInput" id="txtInput" size="30" autocomplete="off" /><!--coloca el codigo que ve en rojo aqui-->
-
-	  <script type="text/javascript">generar();</script>
-    </p>
-	<input type="hidden" id="idUser">
-    <input type="button" id="envio" value="Enviar"   />
-	</form>
+				</form>
     <span id="result" style="display:none">SUCCESS</span>
 <script type="text/javascript">
+(function($) {
+    function toggleLabel() {
+        var input = $(this);
+        setTimeout(function() {
+            var def = input.attr('title');
+            if (!input.val() || (input.val() == def)) {
+                input.prev('span').css('visibility', '');
+                if (def) {
+                    var dummy = $('<label></label>').text(def).css('visibility','hidden').appendTo('body');
+                    input.prev('span').css('margin-left', dummy.width() + 3 + 'px');
+                    dummy.remove();
+                }
+            } else {
+                input.prev('span').css('visibility', 'hidden');
+            }
+        }, 0);
+    };
+
+    function resetField() {
+        var def = $(this).attr('title');
+        if (!$(this).val() || ($(this).val() == def)) {
+            $(this).val(def);
+            $(this).prev('span').css('visibility', '');
+        }
+    };
+
+    $('input, textarea').live('keydown', toggleLabel);
+    $('input, textarea').live('paste', toggleLabel);
+    $('select').live('change', toggleLabel);
+
+    $('input, textarea').live('focusin', function() {
+        $(this).prev('span').css('color', '#ccc');
+    });
+    $('input, textarea').live('focusout', function() {
+        $(this).prev('span').css('color', '#999');
+    });
+
+    $(function() {
+        $('input, textarea').each(function() { toggleLabel.call(this); });
+    });
+
+})(jQuery);
+
+
  $(document).ready(function () {
-      //agregar nueva regla: solo caracteres del alfabeto castellano
+     
+	 console.log("Inciando en " + $("#email_info").val());
+	 
+	 
+	 
+	 
+	 
+	  //agregar nueva regla: solo caracteres del alfabeto castellano
 	jQuery.validator.addMethod("latincharonly", function(value, element) { 
   return this.optional(element) || /^[a-zA-Z áéíóúüAÉÍÓÚÜÑñ]+$/.test(value); 
 }, "Please only letters.");
 	jQuery.validator.addMethod("latindircharonly", function(value, element) { 
-  return this.optional(element) || /^[a-zA-Z\d# áéíóúüAÉÍÓÚÜÑñ/-]+$/.test(value); 
+  return this.optional(element) || /^[a-zA-Z\d\.# áéíóúüAÉÍÓÚÜÑñ/-]+$/.test(value); 
 }, "Please only letters, numbers, #, - or /.");
 
 
-	  $("#form").validate({
+	  $("#signup").validate({
       	 rules: {
-           'ap_paterno': {required:true , minlength : 3, latincharonly: true },
-           'ap_materno': {required:true , minlength : 3, latincharonly: true },
-		   'nombre': {required:true , minlength : 3, latincharonly: true },
+           'ap_paterno': {required:true , minlength : 2, latincharonly: true },
+           'ap_materno': {required:true , minlength : 2, latincharonly: true },
+		   'nombre': {required:true , minlength : 2, latincharonly: true },
 		   'direccion': { required:true, latindircharonly: true },
+		   'dominio': { required:true },
 		   'estado': { required:true },
 		   'ciudad': { required:true },
            'telefono': { required: true, number: true , maxlength: 14},
@@ -94,10 +137,11 @@
 		   'txtInput': {required : true, equalTo: '#txtCaptcha'}                      
            },
           messages : {
-          'ap_paterno': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
-           'ap_materno': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
-		   'nombre': {required:'Campo obligatorio' , minlength : 'Mínimo de 3 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
+          'ap_paterno': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
+           'ap_materno': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
+		   'nombre': {required:'Campo obligatorio' , minlength : 'Mínimo de 2 caracteres', latincharonly: 'Solamente caracteres alfabéticos' },
 		   'direccion': {required:'Campo obligatorio', latindircharonly: 'Hay un caracter inválido' },
+		   'dominio': {required:'Campo obligatorio'},
 		   'estado': {required:'Campo obligatorio'},
 		   'ciudad': {required:'Campo obligatorio'},
            'telefono': { required: 'Campo obligatorio', number: 'Ingrese solamente dígitos', maxlength: 'Máximo 14 dígitos' },
@@ -108,16 +152,32 @@
           }
 
       });
-		$("#envio").click(function(){
-			if($("#form").valid()){
-				//entra aqui si no hay errores
-				sendForm();
+		$("#submit").click(function(){
+			if($("#signup").valid()){
+				$.post('functions/verifyEmail.php',{email: $("#correo").val()},function (data){
+					var d = data;
+					$("#email_info").val(d);
+					var comp = $("#email_info").val();
+					console.log(comp);
+					if(comp==0)
+					{
+					alert("Esta dirección de correo ya está registrada en el sistema.");
+					}
+					else{
+						console.log("Todo esta bien");
+						sendForm();
+					}
+					
+				});
 			}
 		});
+		
+		/*
 		$.post('functions/dropdown.php',{op :1 , estado : '0' },function (data){
 			$("#estado").append(data);
 			onChangeEstado();
 		});
+		*/
     });
 	function sendForm()
 	{
@@ -136,7 +196,7 @@
 				//aqui iria el load al paso  2...
 				 $('#result').show();
 				 $('#result').load("registro2.php");
-				 $('#form').hide();
+				 $('#signup').hide();
 			})
 	}
 
@@ -148,12 +208,10 @@
 			$("#ciudad").append(data);
 		});
 	}
-
-
+		//function probarEmail(em){
+			
+		//}
 </script>
-<div id="footer">
-	&copy; 2013, FamilyMail.com.mx
-</div>
 </div>
 </body>
 </html>

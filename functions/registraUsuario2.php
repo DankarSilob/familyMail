@@ -18,6 +18,9 @@
         $sql2="INSERT INTO User_emails (id_user, id_email , id_email_type) VALUES ($idUser,$lastId,1);";	
         $db->query($sql2);
 	}
+	$sql3="UPDATE Users SET complete='1' WHERE id_user='$idUser';";
+	$db->query($sql3);
+	
 	if(isset($db))$db->close();
 	
 	

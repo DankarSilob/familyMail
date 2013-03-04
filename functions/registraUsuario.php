@@ -1,9 +1,10 @@
 <?php
 	require("../Classes/mysql.php");
-	$apellidoPaterno = $_POST["apellidoPaterno"];
-	$apellidoMaterno = $_POST["apellidoMaterno"];
+	
+	$apellidoPaterno = strtr(strtoupper($_POST["apellidoPaterno"]),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
+	$apellidoMaterno = strtr(strtoupper($_POST["apellidoMaterno"]),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
 	$contrasena = $_POST["contrasena"];
-	$nombre = $_POST["nombre"];
+	$nombre = strtr(strtoupper($_POST["nombre"]),"àèìòùáéíóúçñäëïöü","ÀÈÌÒÙÁÉÍÓÚÇÑÄËÏÖÜ");
 	$direccion = $_POST["direccion"];
 	$ciudad = $_POST["ciudad"];
 	$estado = $_POST["estado"];
